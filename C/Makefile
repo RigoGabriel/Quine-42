@@ -1,18 +1,20 @@
 COLLEEN = Colleen
 GRACE = Grace
+SULLY = Sully
 OS = $(shell uname)
 
 OBJDIR = ./objs
 
 SRCS = Colleen.c \
-				Grace.c
+				Grace.c \
+				Sully.c
 
 OBJ	= $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-all: obj $(COLLEEN) $(GRACE)
+all: obj $(COLLEEN) $(GRACE) $(SULLY)
 
 obj:
 		@mkdir -p $(OBJDIR)
@@ -26,11 +28,14 @@ $(COLLEEN): $(OBJ)
 $(GRACE): $(OBJ)
 		$(CC) -o $@ $(OBJDIR)/$@.o
 
+$(SULLY): $(OBJ)
+		$(CC) -o $@ $(OBJDIR)/$@.o
+
 clean:
-		rm -rf $(OBJDIR) Grace_kid.c
+		rm -rf $(OBJDIR) Grace_kid.c Sully_*
 
 fclean: clean
-		rm -f $(COLLEEN) $(GRACE)
+		rm -f $(COLLEEN) $(GRACE) $(SULLY)
 
 re: fclean all
 
